@@ -3,6 +3,7 @@ package com.example.credit_calculator.Service.Impl;
 import com.example.credit_calculator.DTO.response.TariffResponseDto;
 import com.example.credit_calculator.Entity.Tariff;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.credit_calculator.DTO.request.CalculationRequestDTO;
 import com.example.credit_calculator.DTO.response.CalculationResponseDTO;
@@ -25,7 +26,7 @@ public class CalculationServiceImpl implements CalculationService {
 //        TariffResponseDto tariffResponseDto = new TariffResponseDto();
 //        tariffResponseDto.setCreditAmount();
         CalculationResponseDTO responseDTO = new CalculationResponseDTO();
-
+        responseDTO.setTariffs(tariffRepo.findAll());
         return responseDTO;
     }
 
