@@ -1,10 +1,10 @@
 package com.example.credit_calculator.controller;
 
-import com.example.credit_calculator.DTO.ReqDto.TariffReqDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.credit_calculator.DTO.request.CalculationRequestDTO;
 import com.example.credit_calculator.Entity.Tariff;
 import com.example.credit_calculator.Service.TariffService; 
 
@@ -19,18 +19,12 @@ public class TariffController {
 
     @GetMapping("{id}")
     public ResponseEntity<Tariff> get(@PathVariable long id) {
-        tariffService.getById(id)
+        // tariffService.getById(id)
         
         // System.out.println("ok");
         // Tariff tariff = tariffService.getById(id);
 
-        return ResponseEntity.ok(tariff);
-    }
-    @PostMapping ("/calc")
-    public ResponseEntity<TariffReqDto> getOrderPrice(
-            @RequestBody TariffReqDto textReqOrderDto ) {
-        TariffReqDto tariffReqDto= tariffService.getOrderPrise(textReqOrderDto);
-        return ResponseEntity.ok(tariffReqDto);
+        return ResponseEntity.ok(null);
     }
 
 

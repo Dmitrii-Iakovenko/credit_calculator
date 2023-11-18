@@ -13,13 +13,15 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tariff {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String typeCred;
-    int maxSum;
-    int minSum;
-    int minSrok;
-    int maxSrok;
+    String creditType;
+    int maxCreditAmount;
+    int minCreditAmount;
+    int minCreditTerm;
+    int maxCreditTerm;
+    double interestRate;
 
 }

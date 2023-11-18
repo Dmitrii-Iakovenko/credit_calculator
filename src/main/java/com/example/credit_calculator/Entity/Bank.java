@@ -1,6 +1,5 @@
 package com.example.credit_calculator.Entity;
 
-import com.example.credit_calculator.Enum.Currency;
 import jakarta.persistence.*;
 import lombok.*;
 
