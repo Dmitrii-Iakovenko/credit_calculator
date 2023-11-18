@@ -22,4 +22,5 @@ public class Tariff {
     int minSrok;
     int maxSrok;
 
+
 }
