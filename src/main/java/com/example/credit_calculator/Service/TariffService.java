@@ -6,5 +6,7 @@ import com.example.credit_calculator.Entity.Tariff;
 public interface TariffService {
 
     Optional<Tariff> getById(long id);
+    Tariff save(Tariff tariff);
+    void delete(Tariff tariff);
 
 }

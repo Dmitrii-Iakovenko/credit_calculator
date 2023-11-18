@@ -15,8 +15,19 @@ public class TariffServiceImpl implements TariffService {
 
     private final TariffRepo tariffRepo;
     
+    @Override
     public Optional<Tariff> getById(long id) {
         return tariffRepo.findById(id);
+    }
+
+    @Override
+    public Tariff save(Tariff tariff) {
+        return tariffRepo.saveAndFlush(tariff);
+    }
+
+    @Override
+    public void delete(Tariff tariff) {
+        tariffRepo.delete(tariff);
     }
 
 }
