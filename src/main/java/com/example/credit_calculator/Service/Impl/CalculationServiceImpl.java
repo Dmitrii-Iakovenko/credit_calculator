@@ -42,9 +42,11 @@ public class CalculationServiceImpl implements CalculationService {
     }
 
     private TariffResponseDto toDTO(Tariff tariff, int creditAmount, int creditTerm) {
-        double monthlyPayment = getMonthlyRepaymentAmount(creditAmount, creditTerm);
         double interestAmount = tariff.getInterestRate() * creditAmount / 100;
-        double totalRepaymentAmount = monthlyPayment + interestAmount;
+        double totalRepaymentAmount = interestAmount + creditAmount;
+//        double monthlyPayment = getMonthlyRepaymentAmount
+//                (totalRepaymentAmount, creditTerm,creditAmount);
+        double monthlyPayment = totalRepaymentAmount / creditTerm;
         String creditType = tariff.getCreditType().getTypeCred();
         String bankName = tariff.getBank().getBankName();
         String logoUrl = tariff.getBank().getLogoUrl();
@@ -60,9 +62,8 @@ public class CalculationServiceImpl implements CalculationService {
         return tariffResponseDto;
     };
 
-    private double getMonthlyRepaymentAmount(int creditAmount, int creditTerm) {
-        double creditTermInterestRate = creditTerm /12 /100;
-        return creditAmount * creditTermInterestRate;
-    }
+//    private double getMonthlyRepaymentAmount(double totalRepaymentAmount, int creditTerm,int creditAmount) {
+//        return creditAmount * ;
+//    }
 
 }
