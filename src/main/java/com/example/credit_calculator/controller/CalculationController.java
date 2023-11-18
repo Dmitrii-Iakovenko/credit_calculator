@@ -16,10 +16,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CalculationController {
     
-    @PostMapping
-    public ResponseEntity<CalculationRequestDTO> getTariffs(@RequestBody CalculationRequestDTO calculationRequestDTO ) {
-        CalculationRequestDTO tariffsDTO = calculationService.getTariffs(calculationRequestDTO);
-        return ResponseEntity.ok(tariffsDTO);
-    }
+//    @PostMapping
+//    public ResponseEntity<CalculationRequestDTO> getTariffs(@RequestBody CalculationRequestDTO calculationRequestDTO ) {
+//        CalculationRequestDTO tariffsDTO = calculationService.getTariffs(calculationRequestDTO);
+//        return ResponseEntity.ok(tariffsDTO);
+//    }
 
 }

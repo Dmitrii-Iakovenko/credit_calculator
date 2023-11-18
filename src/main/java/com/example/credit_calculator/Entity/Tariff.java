@@ -1,9 +1,6 @@
 package com.example.credit_calculator.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -17,7 +14,10 @@ public class Tariff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String creditType;
+    @ManyToOne
+    CreditType creditType;
+    @ManyToOne
+    Bank bank;
     int maxCreditAmount;
     int minCreditAmount;
     int minCreditTerm;
