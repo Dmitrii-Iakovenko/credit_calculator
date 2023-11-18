@@ -17,12 +17,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TariffRepo extends JpaRepository <Tariff, Long> {
 
-    // @Query ("select t from Tariff t " +
-    //         "where t.maxCreditAmount >= :creditAmount " + "and :creditAmount >= t.minCreditAmount " +
-    //         "and :creditTerm <= t.maxCreditTerm" + "and :creditTerm >= t.minCreditTerm " +
-    //         ":creditType == t.creditType"
-    //     )
-    // List<Tariff> customFind(int creditAmount, int creditTerm, String creditType);
+     @Query ("select t from Tariff t " +
+             "where t.maxCreditAmount >= :creditAmount and :creditAmount >= t.minCreditAmount " +
+             "and :creditTerm <= t.maxCreditTerm and :creditTerm >= t.minCreditTerm " +
+             "and :creditType = t.creditType.typeCred"
+         )
+     List<Tariff> customFind(int creditAmount, int creditTerm, String creditType);
     // List<Tariff> findByMaxCreditAmountGreaterThanEqualAndMinCreditAmountLessThanEqualAndMaxCreditTermGreaterThanEqualAndMinCreditTermLessThanEqualAndCreditType(int creditAmount, int creditTerm, String creditType);
 
     

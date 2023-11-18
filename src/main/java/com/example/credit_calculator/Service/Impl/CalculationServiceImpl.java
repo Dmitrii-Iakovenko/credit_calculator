@@ -28,8 +28,8 @@ public class CalculationServiceImpl implements CalculationService {
         int creditTerm = calculationRequestDTO.getCreditTerm();
         String creditType = calculationRequestDTO.getCreditType();
 
-        // List<Tariff> tariffs = tariffRepo.customFind(creditAmount, creditTerm, creditType);        
-        List<Tariff> tariffs = tariffRepo.findAll();
+         List<Tariff> tariffs = tariffRepo.customFind(creditAmount, creditTerm, creditType);
+       // List<Tariff> tariffs = tariffRepo.findAll();
 
 
         List<TariffResponseDto> tariffDTOs = tariffs.stream()
@@ -45,7 +45,7 @@ public class CalculationServiceImpl implements CalculationService {
         double monthlyPayment = getMonthlyRepaymentAmount(creditAmount, creditTerm);
         double interestAmount = tariff.getInterestRate() * creditAmount / 100;
         double totalRepaymentAmount = monthlyPayment + interestAmount;
-        String creditType = tariff.getCreditType().toString();        
+        String creditType = tariff.getCreditType().getTypeCred();
         String bankName = tariff.getBank().getBankName();
         String logoUrl = tariff.getBank().getLogoUrl();
 
