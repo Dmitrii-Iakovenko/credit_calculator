@@ -1,12 +1,10 @@
 package com.example.credit_calculator.Service;
+import java.util.Optional;
 
-<<<<<<< HEAD
-public interface TariffService {
-=======
 import com.example.credit_calculator.Entity.Tariff;
 
 public interface TariffService {
 
-    Tariff getByid(long id);
->>>>>>> c911095 (COM5)
+    Optional<Tariff> getById(long id);
+
 }

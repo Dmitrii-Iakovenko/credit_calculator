@@ -21,8 +21,11 @@ public class TariffController {
 
     @GetMapping("{id}")
     public ResponseEntity<Tariff> get(@PathVariable long id) {
-        System.out.println("ok");
-        Tariff tariff = tariffService.getByid(id);
+        tariffService.getById(id)
+        
+        // System.out.println("ok");
+        // Tariff tariff = tariffService.getById(id);
+
         return ResponseEntity.ok(tariff);
     }
 

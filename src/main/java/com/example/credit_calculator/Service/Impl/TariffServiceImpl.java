@@ -1,15 +1,22 @@
 package com.example.credit_calculator.Service.Impl;
-
-<<<<<<< HEAD
+import com.example.credit_calculator.Entity.Tariff;
+import com.example.credit_calculator.Repo.TariffRepo;
 import com.example.credit_calculator.Service.TariffService;
 
-=======
+import lombok.RequiredArgsConstructor;
+
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
-import com.example.credit_calculator.Service.TariffService;
-
-
 @Service
->>>>>>> c911095 (COM5)
+@RequiredArgsConstructor
 public class TariffServiceImpl implements TariffService {
+
+    private final TariffRepo tariffRepo;
+    
+    public Optional<Tariff> getById(long id) {
+        return tariffRepo.findById(id);
+    }
+
 }
