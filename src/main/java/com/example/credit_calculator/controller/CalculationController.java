@@ -21,4 +21,5 @@ public class CalculationController {
         CalculationResponseDTO tariffsDTO = calculationService.getTariffs(calculationRequestDTO);
         return ResponseEntity.ok(tariffsDTO);
     }
+
 }
