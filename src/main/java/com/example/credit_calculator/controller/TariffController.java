@@ -1,11 +1,9 @@
 package com.example.credit_calculator.controller;
 
+import com.example.credit_calculator.DTO.ReqDto.TariffReqDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.credit_calculator.Entity.Tariff;
 import com.example.credit_calculator.Service.TariffService; 
@@ -27,6 +25,12 @@ public class TariffController {
         // Tariff tariff = tariffService.getById(id);
 
         return ResponseEntity.ok(tariff);
+    }
+    @PostMapping ("/calc")
+    public ResponseEntity<TariffReqDto> getOrderPrice(
+            @RequestBody TariffReqDto textReqOrderDto ) {
+        TariffReqDto tariffReqDto= tariffService.getOrderPrise(textReqOrderDto);
+        return ResponseEntity.ok(tariffReqDto);
     }
 
 

@@ -20,4 +20,5 @@ public class CreditType {
     Long id;
     String typeCred;
 
+
 }
