@@ -2,7 +2,6 @@ package com.example.credit_calculator.DTO.response;
 
 import java.util.List;
 
-import com.example.credit_calculator.Entity.Tariff;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +14,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CalculationResponseDTO {
 
-    private List<Tariff> tariffs;
+    private List<TariffResponseDto> tariffs;
 
 }

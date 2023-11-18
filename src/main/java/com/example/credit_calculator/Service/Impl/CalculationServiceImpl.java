@@ -2,8 +2,8 @@ package com.example.credit_calculator.Service.Impl;
 
 import com.example.credit_calculator.DTO.response.TariffResponseDto;
 import com.example.credit_calculator.Entity.Tariff;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.credit_calculator.DTO.request.CalculationRequestDTO;
 import com.example.credit_calculator.DTO.response.CalculationResponseDTO;
@@ -13,6 +13,7 @@ import com.example.credit_calculator.Service.CalculationService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,37 +23,46 @@ public class CalculationServiceImpl implements CalculationService {
 
     @Override
     public CalculationResponseDTO getTariffs(CalculationRequestDTO calculationRequestDTO) {
+        
+        int creditAmount = calculationRequestDTO.getCreditAmount();
+        int creditTerm = calculationRequestDTO.getCreditTerm();
+        String creditType = calculationRequestDTO.getCreditType();
 
-//        TariffResponseDto tariffResponseDto = new TariffResponseDto();
-//        tariffResponseDto.setCreditAmount();
+        // List<Tariff> tariffs = tariffRepo.customFind(creditAmount, creditTerm, creditType);        
+        List<Tariff> tariffs = tariffRepo.findAll();
+
+
+        List<TariffResponseDto> tariffDTOs = tariffs.stream()
+            .map(tariff -> toDTO(tariff, creditAmount, creditTerm))
+            .collect(Collectors.toList());
+
         CalculationResponseDTO responseDTO = new CalculationResponseDTO();
-        responseDTO.setTariffs(tariffRepo.findAll());
+        responseDTO.setTariffs(tariffDTOs);
         return responseDTO;
     }
 
-    private    TariffResponseDto getTariffResponseDto(CalculationRequestDTO calculationRequestDTO){
-        int creditAmount = calculationRequestDTO.getCreditAmount();
-        int creditTerm = calculationRequestDTO.getCreditTerm();
-        double interestRate = getInterestRate(creditTerm,creditAmount);
-        double  monthlyPayment = getTotalRepaymentAmount  ( creditAmount,creditTerm);
-        double interestAmount = interestRate * creditAmount / 100.0;
+    private TariffResponseDto toDTO(Tariff tariff, int creditAmount, int creditTerm) {
+        double monthlyPayment = getMonthlyRepaymentAmount(creditAmount, creditTerm);
+        double interestAmount = tariff.getInterestRate() * creditAmount / 100;
         double totalRepaymentAmount = monthlyPayment + interestAmount;
+        String creditType = tariff.getCreditType().toString();        
+        String bankName = tariff.getBank().getBankName();
+        String logoUrl = tariff.getBank().getLogoUrl();
+
         TariffResponseDto tariffResponseDto = new TariffResponseDto();
-        tariffResponseDto.setCreditAmount(tariffResponseDto.getCreditAmount());
+        tariffResponseDto.setCreditAmount(creditAmount);
         tariffResponseDto.setMonthlyPayment(monthlyPayment);
         tariffResponseDto.setTotalRepaymentAmount(totalRepaymentAmount);
+        tariffResponseDto.setCreditType(creditType);
+        tariffResponseDto.setBankName(bankName);        
+        tariffResponseDto.setLogoUrl(logoUrl);
+
         return tariffResponseDto;
     };
 
-    private double getTotalRepaymentAmount  (int creditAmount,int creditTerm){
-        double totalAmount = getInterestRate(creditAmount, creditTerm);
+    private double getMonthlyRepaymentAmount(int creditAmount, int creditTerm) {
         double creditTermInterestRate = creditTerm /12 /100;
-        return creditAmount * creditTermInterestRate / totalAmount;
+        return creditAmount * creditTermInterestRate;
     }
-    private double getInterestRate (int creditAmount,int creditTerm ){
-        return tariffRepo.getInterestRate(creditAmount,creditTerm);
-    };
-
-
 
 }

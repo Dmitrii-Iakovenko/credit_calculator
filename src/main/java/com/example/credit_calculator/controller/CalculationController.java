@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class CalculationController {
 
     private final CalculationService calculationService;
+    
     @PostMapping
     public ResponseEntity<CalculationResponseDTO> getTariffs(@RequestBody CalculationRequestDTO calculationRequestDTO ) {
         CalculationResponseDTO responseDTO = calculationService.getTariffs(calculationRequestDTO);

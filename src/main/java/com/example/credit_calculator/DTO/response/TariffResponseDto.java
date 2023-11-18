@@ -10,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TariffResponseDto {
+     
      int creditAmount;
      double monthlyPayment;
      double TotalRepaymentAmount;
