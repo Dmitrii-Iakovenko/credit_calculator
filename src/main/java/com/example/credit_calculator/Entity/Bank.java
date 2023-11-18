@@ -1,6 +1,6 @@
 package com.example.credit_calculator.Entity;
 
-import com.example.credit_calculator.Enum.Val;
+import com.example.credit_calculator.Enum.Currency;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,15 +10,12 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Banks {
+public class Bank {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String bankName;
-   // String typeCred;
-    @Enumerated(EnumType.STRING)
-    Val val;
-
-
+    String logoUrl;
 
 }

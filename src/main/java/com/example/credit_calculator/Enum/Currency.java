@@ -1,6 +1,6 @@
 package com.example.credit_calculator.Enum;
 
-public enum Val {
+public enum Currency {
     USE,
     COM
 }
