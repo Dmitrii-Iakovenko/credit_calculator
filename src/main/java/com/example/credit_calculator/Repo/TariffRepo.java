@@ -1,4 +1,4 @@
-package com.example.credit_calculator.Enum.Repo;
+package com.example.credit_calculator.Repo;
 
 import com.example.credit_calculator.Entity.Tariff;
 import org.springframework.data.jpa.repository.JpaRepository;
